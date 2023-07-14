@@ -17,9 +17,9 @@ function getComputerChoice(){
 //playerSelection and computerSelection, and returns who won
 
 
-function playRockPaperScissors(playerSelection) {
+
+function playRockPaperScissors(playerSelection, computerSelection) {
     //Create a variable to store the results of the computer's choice function
-    let computerSelection = getComputerChoice();
 
     let result = '';
 
@@ -53,7 +53,10 @@ function game(){
     let computerWins = 0;
 
     //retrieve player input from a prompt
-    let playerSelection = prompt('Rock, paper, or scissors?').toString().toLowerCase()
+    let playerSelection = prompt('Rock, paper, or scissors?').toString().toLowerCase();
+
+    //retrieve computer selection
+    let computerSelection = getComputerChoice();
 
     //Prompt the player's input 5 times, update the win point and notify results each time
     // while(matchCounter < 5){
@@ -61,8 +64,15 @@ function game(){
     // }
 
     //play the game and store results 
-    let gamePoint = playRockPaperScissors(playerSelection);
-    //get the value of the game
-    return gamePoint;
+    let gamePoint = playRockPaperScissors(playerSelection, computerSelection);
+
+    // Show the player results of the game
+    if(gamePoint === 'draw'){
+        return `Computer played ${computerSelection}, it's a draw!`;
+    } else if (gamePoint === 'lose') {
+        return `${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}, You lose! :C`
+    } else {
+        return `${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}, You win! :D`
+    }
 
 }
