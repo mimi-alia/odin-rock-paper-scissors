@@ -24,16 +24,48 @@ function playRockPaperScissors(playerSelection) {
     //Create a variable to store the player's inputted selection
     playerSelection = playerSelection.toLowerCase();
 
+    let result = '';
+
     //if the computer and play play the same choice, they tie
     if (playerSelection === computerSelection) {
-        return `Computer played ${computerSelection}, it's a draw!`;
+        // return `Computer played ${computerSelection}, it's a draw!`;
+        result+='draw'
     //if the computer plays a choice that beats the player's choice, the computer wins
     } else if (playerSelection === 'rock' && computerSelection==='paper' || playerSelection === 'paper' && computerSelection==='scissors' ||playerSelection === 'scissors' && computerSelection==='rock'){
         //Make the first character in the sentence uppercase
-        return `${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}, You lose! :C`
+        // return `${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}, You lose! :C`
+        result+='lose'
     // if the player plays a choice that beats the computer's choice, the player wins
     } else {
         //Make the first character in the sentence uppercase
-        return `${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}, You win! :D`
+        // return `${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}, You win! :D`
+        result+='win'
     }
+    return result
+}
+
+//Write a function that plays a 5 round game that keeps score and reports a winner or loser at the end.
+    // Retrieve player information from a prompt
+
+function game(){
+    //Create a counter to store how many rounds have been played in a game
+    let matchCounter = 0;
+    //Create a counter to store player wins
+    let playerWins = 0;
+    //Create a counter to store computer wins
+    let computerWins = 0;
+
+    //retrieve player input from a prompt
+    let playerSelection = prompt('Rock, paper, or scissors?').toString().toLowerCase()
+
+    //Prompt the player's input 5 times, update the win point and notify results each time
+    // while(matchCounter < 5){
+        
+    // }
+
+    //play the game
+    let gamePoint = playRockPaperScissors(playerSelection)
+    //get the value of the game
+    return gamePoint
+
 }
