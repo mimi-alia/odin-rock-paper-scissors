@@ -52,27 +52,38 @@ function game(){
     //Create a counter to store computer wins
     let computerWins = 0;
 
-    //retrieve player input from a prompt
-    let playerSelection = prompt('Rock, paper, or scissors?').toString().toLowerCase();
-
-    //retrieve computer selection
-    let computerSelection = getComputerChoice();
 
     //Prompt the player's input 5 times, update the win point and notify results each time
-    // while(matchCounter < 5){
-        
-    // }
+    while(matchCounter < 5){
+        //retrieve player input from a prompt
+        let playerSelection = prompt('Rock, paper, or scissors?').toString().toLowerCase();
 
-    //play the game and store results 
-    let gamePoint = playRockPaperScissors(playerSelection, computerSelection);
+        //retrieve computer selection
+        let computerSelection = getComputerChoice();
 
-    // Show the player results of the game
-    if(gamePoint === 'draw'){
-        return `Computer played ${computerSelection}, it's a draw!`;
-    } else if (gamePoint === 'lose') {
-        return `${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}, You lose! :C`
-    } else {
-        return `${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}, You win! :D`
+        //play the game and store results 
+        let gamePoint = playRockPaperScissors(playerSelection, computerSelection);
+
+
+        // Show the player results of the game
+        if(gamePoint === 'draw'){
+            console.log(`Computer played ${computerSelection}, it's a draw!`);
+        } else if (gamePoint === 'lose') {
+            computerWins++
+            console.log(`${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}, You lose! :C`);
+        } else {
+            playerWins++
+            console.log(`${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}, You win! :D`);
+        }
+        matchCounter++
     }
 
+    // Show the player who won based on values stored in the win counters
+    if (playerWins > computerWins){
+        console.log('You Won')
+    } else if (computerWins > playerWins){
+        console.log('Computer won')
+    } else {
+        console.log('It\'s a draw')
+    }
 }
