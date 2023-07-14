@@ -21,9 +21,6 @@ function playRockPaperScissors(playerSelection) {
     //Create a variable to store the results of the computer's choice function
     let computerSelection = getComputerChoice();
 
-    //Create a variable to store the player's inputted selection
-    playerSelection = playerSelection.toLowerCase();
-
     let result = '';
 
     //if the computer and play play the same choice, they tie
@@ -63,9 +60,9 @@ function game(){
         
     // }
 
-    //play the game
-    let gamePoint = playRockPaperScissors(playerSelection)
+    //play the game and store results 
+    let gamePoint = playRockPaperScissors(playerSelection);
     //get the value of the game
-    return gamePoint
+    return gamePoint;
 
 }
