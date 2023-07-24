@@ -2,6 +2,8 @@
 
 This is a simple rock paper scissors game from the odin project
 
-This game is a practice in working with javascript and thus is only interactable in the console.
+DOM UI in progress. Game must be initialized by first selecting an option then
 
-DOM interactivity will be added shortly.
+calling the playRound() function in the console.
+
+No game limit added.

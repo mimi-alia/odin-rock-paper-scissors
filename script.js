@@ -44,7 +44,7 @@ function playRockPaperScissors(playerSelection, computerSelection) {
 //Write a function that plays a 5 round game that keeps score and reports a winner or loser at the end.
     // Retrieve player information from a prompt
 
-function game(){
+function playRound(){
     //Create a counter to store how many rounds have been played in a game
     let matchCounter = 0;
     //Create a counter to store player wins
@@ -75,17 +75,24 @@ function game(){
             playerWins++
             console.log(`${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}, You win! :D`);
         }
-        matchCounter++
+        // matchCounter++
     }
 
-    // Show the player who won based on values stored in the win counters
-    if (playerWins > computerWins){
-        console.log('You Won')
-    } else if (computerWins > playerWins){
-        console.log('Computer won')
-    } else {
-        console.log('It\'s a draw')
-    }
+    // // Show the player who won based on values stored in the win counters
+    // if (playerWins > computerWins){
+    //     console.log('You Won')
+    // } else if (computerWins > playerWins){
+    //     console.log('Computer won')
+    // } else {
+    //     console.log('It\'s a draw')
+    // }
+
 }
 
-game()
+window.addEventListener('DOMContentLoaded', () => {
+var buttons = document.querySelectorAll('.button');
+alert(buttons);
+buttons.forEach(  function(button) {
+    console.log(button);
+  button.addEventListener('click', getComputerChoice);})
+});

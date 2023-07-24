@@ -3,10 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="./script.js"></script>
+    <title>Odin RPS</title>
+    <link href="./style.css" rel="stylesheet">
 </head>
 <body>
+    <div class="point-counter-head">
+        <h1>Rock Paper Scissors</h1>
+        <h2 class="match-counter" ></h2>
+        <div class="point-counter">
+            <div>
+                <h3>Player Wins</h3>
+                <span class="player-selection"></span>
+                <span class="player-win-point">0</span> 
+            </div>
+            <div>
+                <h3>Computer Wins</h3>
+                <span class="computer-selection"></span>
+                <span class="computer-win-point">0</span>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="button" name="button" value="rock">R</button>
+        <button class="button" name="button" value="paper">P</button>
+        <button class="button" name="button" value="scissors">S</button>
+    </div>
+    <!-- <script src="./script.js"></script> -->
+    <script>
+
+        let computerSelection = document.querySelector('.computer-selection');
+        let playerSelection =  document.querySelector('.player-selection');
+        let winner = document.querySelector('.point-counter-head h2');
+        let playerWins = document.querySelector('.player-win-point');
+        let computerWins = document.querySelector('.computer-win-point');
+        let computerWinsCounter = 0;
+        let playerWinsCounter = 0;
+        let matchPoint;
+        let matchCounter = 0;
+
+        
+        const buttons = document.querySelectorAll('.button');
+
+//Create a function that randomly selects one of the values from a list of "rock", "paper", or "scissors"
+
+function getComputerChoice(){
+    //Create a list choices of rock, paper scissors
+    let choices = ['rock', 'paper', 'scissors'];
+
+    //Create a value that is randomly selected from the entire length of
+    // the choices list to use as an index
+    let index = Math.floor(Math.random()*choices.length);
+
+    //index the choices list with the random index value so it returns a different
+    //choice upon each call
+    computerSelection.innerText = choices[index];
+}
+
+//A function that gets the players selection from the buttons 
+
+function getPlayerChoice(){
+    buttons.forEach(  function(button) {
+        button.addEventListener('click', function(e){
+            playerSelection.innerText = button.value.toLowerCase();
+        });
+    });
+}
+
+
+
+
+// // Write a function that plays a single round of Rock Paper Scissors with two parameters:
+// //playerSelection and computerSelection, and returns who won
+
+
+
+function playRockPaperScissors() {
+    //Create a variable to store the results of the computer's choice function
+    getComputerChoice();
+
+    //if the computer and play play the same choice, they tie
+    if (playerSelection.innerText === computerSelection.innerText) {
+        matchPoint='draw';
+        winner.innerText = `Computer played ${computerSelection.innerText}, it's a draw!`;
+    //if the computer plays a choice that beats the player's choice, the computer wins
+    } else if (playerSelection.innerText === 'rock' && computerSelection.innerText ==='paper' || playerSelection.innerText === 'paper' && computerSelection.innerText ==='scissors' ||playerSelection.innerText === 'scissors' && computerSelection.innerText ==='rock'){
+        //Make the first character in the sentence uppercase
+        matchPoint='lose';
+        winner.innerText = `${computerSelection.innerText[0].toUpperCase() + computerSelection.innerText.slice(1)} beats ${playerSelection.innerText}, You lose! :C`
+
+    // if the player plays a choice that beats the computer's choice, the player wins
+    } else {
+        //Make the first character in the sentence uppercase
+        matchPoint='win';
+        winner.innerText = `${playerSelection.innerText[0].toUpperCase() + playerSelection.innerText.slice(1)} beats ${computerSelection.innerText}, You win! :D`
+
+    }
+
+}
+
+// //Write a function that plays a 5 round game that keeps score and reports a winner or loser at the end.
+//     // Retrieve player information from a prompt
+
+function playRound(){
+    playRockPaperScissors();
+
+        if (matchPoint == 'lose'){
+            ++computerWinsCounter;
+            computerWins.innerText = computerWinsCounter.toString();
+        } else if (matchPoint == 'win') {
+            ++playerWinsCounter;
+            playerWins.innerText = playerWinsCounter.toString()
+        } else {
+            return;
+        } 
+
+}
+
+
+getPlayerChoice();
+
+// function playRound(){
+//     //Create a counter to store how many rounds have been played in a game
+//     let matchCounter = 0;
+//     //Create a counter to store player wins
+//     let playerWins = 0;
+//     //Create a counter to store computer wins
+//     let computerWins = 0;
+
+
+//     //Prompt the player's input 5 times, update the win point and notify results each time
+//     // while(matchCounter < 5){
+//         //retrieve player input from button selection
+//         // let playerSelection = prompt('Rock, paper, or scissors?').toString().toLowerCase();
+//         let playerSelection = getPlayerChoice();
+//         //retrieve computer selection
+//         let computerSelection = getComputerChoice();
+
+//         // console.log(playerSelection);
+
+//         //play the game and store results 
+//         let gamePoint = playRockPaperScissors(playerSelection, computerSelection);
+
+
+//         // Show the player results of the game
+//         if(gamePoint === 'draw'){
+//             console.log(`Computer played ${computerSelection}, it's a draw!`);
+//         } else if (gamePoint === 'lose') {
+//             computerWins++
+//             console.log(`${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}, You lose! :C`);
+//         } else {
+//             playerWins++
+//             console.log(`${playerSelection[0].toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}, You win! :D`);
+//         }
+//         matchCounter++
+//     }
+
+    // // Show the player who won based on values stored in the win counters
+    // if (playerWins > computerWins){
+    //     console.log('You Won')
+    // } else if (computerWins > playerWins){
+    //     console.log('Computer won')
+    // } else {
+    //     console.log('It\'s a draw')
+    // }
+
+
+    // var buttons = document.querySelectorAll('.button');
+    // buttons.forEach(  function(button) {
+    //     button.addEventListener('click', () => {
+    //         const playerSelection = button.innerText.toLowerCase();
+    //         playRound(playerSelection, computerSelection);
+    //     });
+
+    // })
+
+    
+    </script>
     
 </body>
 </html>
